@@ -1,0 +1,23 @@
+{
+	"name": "get_SAP_FISCAL_PERIOD_DATES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Local_File_system_linkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "SAP_FISCAL_PERIOD_DATES.csv"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

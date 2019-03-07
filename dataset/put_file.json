@@ -1,0 +1,24 @@
+{
+	"name": "put_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TestingStorage_linkService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "output.txt",
+			"folderPath": "Azure_Storage/input"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

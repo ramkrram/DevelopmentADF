@@ -1,0 +1,24 @@
+{
+	"name": "get_MAKT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Local_File_system_linkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "MAKT.csv",
+			"folderPath": ""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

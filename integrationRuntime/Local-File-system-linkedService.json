@@ -1,0 +1,6 @@
+{
+	"name": "Local-File-system-linkedService",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

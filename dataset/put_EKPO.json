@@ -1,0 +1,24 @@
+{
+	"name": "put_EKPO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Cloud_AzureDataLakeStore",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "EKPO.csv",
+			"folderPath": "Azure_Storage/Input"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

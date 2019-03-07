@@ -1,0 +1,23 @@
+{
+	"name": "get_T880",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Local_File_system_linkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": "T880.csv"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
