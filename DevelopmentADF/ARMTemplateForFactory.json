@@ -1837,9 +1837,11 @@
 							},
 							"sink": {
 								"type": "SqlSink",
-								"writeBatchSize": 10000
+								"writeBatchSize": 10000,
+								"preCopyScript": "truncate table ADRC;"
 							},
 							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
 							"translator": {
 								"type": "TabularTranslator",
 								"columnMappings": {
@@ -3346,8 +3348,10 @@
 					"format": {
 						"type": "TextFormat",
 						"columnDelimiter": ",",
-						"rowDelimiter": "",
+						"rowDelimiter": "\n",
+						"quoteChar": "\"",
 						"nullValue": "\\N",
+						"encodingName": null,
 						"treatEmptyAsNull": true,
 						"skipLineCount": 0,
 						"firstRowAsHeader": true
