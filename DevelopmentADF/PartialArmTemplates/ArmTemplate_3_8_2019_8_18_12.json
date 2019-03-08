@@ -1,0 +1,2731 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "DevelopmentADF"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ADF_Get_file_local')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "pipeline_get_file_local",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "AzureDataLakeStoreSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Get_file",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_file",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Get_file')]",
+				"[concat(variables('factoryId'), '/datasets/put_file')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline_get_local_file')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ADRC",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ADRC_get",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "PUT_ADRC",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EKET",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_EKET",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_EKET",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EKKN",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_EKKN",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_EKKN",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EKKO",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_EKKO",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_EKKO",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EKPO",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_EKPO",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_EKPO",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "KNA1",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_KNA1",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_KNA1",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "LFA1",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_LFA1",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_LFA1",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "MAKT",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_MAKT",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_MAKT",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "MARA",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_MARA",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_MARA",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "MARC",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_MARC",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_MARC",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "SAP_FISCAL_PERIOD_DATES",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_SAP_FISCAL_PERIOD_DATES",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_SAP_FISCAL_PERIOD_DATES",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T000",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T000",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T000",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T001",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T001",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T001",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T001W",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T001W",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T001W",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T002",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T002",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T002",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T006",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T006",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T006",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T006A",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T006A",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T006A",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T009",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T009",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T009",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T023",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T023",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T023",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T023T",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T023T",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T023T",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T024E",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T024E",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T024E",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T030",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T030",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T030",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T134",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T134",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T134",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T134T",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T134T",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T134T",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T171",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T171",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T171",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T171T",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T171T",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T171T",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "T880",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_T880",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_T880",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "TCURC",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_TCURC",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_TCURC",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "TCURT",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_TCURT",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_TCURT",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "TCURX",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_TCURX",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_TCURX",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "TKA02",
+						"type": "Copy",
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"typeProperties": {
+							"source": {
+								"type": "FileSystemSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "get_TKA02",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_TKA02",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADRC_get')]",
+				"[concat(variables('factoryId'), '/datasets/PUT_ADRC')]",
+				"[concat(variables('factoryId'), '/datasets/get_EKET')]",
+				"[concat(variables('factoryId'), '/datasets/put_EKET')]",
+				"[concat(variables('factoryId'), '/datasets/get_EKKN')]",
+				"[concat(variables('factoryId'), '/datasets/put_EKKN')]",
+				"[concat(variables('factoryId'), '/datasets/get_EKKO')]",
+				"[concat(variables('factoryId'), '/datasets/put_EKKO')]",
+				"[concat(variables('factoryId'), '/datasets/get_EKPO')]",
+				"[concat(variables('factoryId'), '/datasets/put_EKPO')]",
+				"[concat(variables('factoryId'), '/datasets/get_KNA1')]",
+				"[concat(variables('factoryId'), '/datasets/put_KNA1')]",
+				"[concat(variables('factoryId'), '/datasets/get_LFA1')]",
+				"[concat(variables('factoryId'), '/datasets/put_LFA1')]",
+				"[concat(variables('factoryId'), '/datasets/get_MAKT')]",
+				"[concat(variables('factoryId'), '/datasets/put_MAKT')]",
+				"[concat(variables('factoryId'), '/datasets/get_MARA')]",
+				"[concat(variables('factoryId'), '/datasets/put_MARA')]",
+				"[concat(variables('factoryId'), '/datasets/get_MARC')]",
+				"[concat(variables('factoryId'), '/datasets/put_MARC')]",
+				"[concat(variables('factoryId'), '/datasets/get_SAP_FISCAL_PERIOD_DATES')]",
+				"[concat(variables('factoryId'), '/datasets/put_SAP_FISCAL_PERIOD_DATES')]",
+				"[concat(variables('factoryId'), '/datasets/get_T000')]",
+				"[concat(variables('factoryId'), '/datasets/put_T000')]",
+				"[concat(variables('factoryId'), '/datasets/get_T001')]",
+				"[concat(variables('factoryId'), '/datasets/put_T001')]",
+				"[concat(variables('factoryId'), '/datasets/get_T001W')]",
+				"[concat(variables('factoryId'), '/datasets/put_T001W')]",
+				"[concat(variables('factoryId'), '/datasets/get_T002')]",
+				"[concat(variables('factoryId'), '/datasets/put_T002')]",
+				"[concat(variables('factoryId'), '/datasets/get_T006')]",
+				"[concat(variables('factoryId'), '/datasets/put_T006')]",
+				"[concat(variables('factoryId'), '/datasets/get_T006A')]",
+				"[concat(variables('factoryId'), '/datasets/put_T006A')]",
+				"[concat(variables('factoryId'), '/datasets/get_T009')]",
+				"[concat(variables('factoryId'), '/datasets/put_T009')]",
+				"[concat(variables('factoryId'), '/datasets/get_T023')]",
+				"[concat(variables('factoryId'), '/datasets/put_T023')]",
+				"[concat(variables('factoryId'), '/datasets/get_T023T')]",
+				"[concat(variables('factoryId'), '/datasets/put_T023T')]",
+				"[concat(variables('factoryId'), '/datasets/get_T024E')]",
+				"[concat(variables('factoryId'), '/datasets/put_T024E')]",
+				"[concat(variables('factoryId'), '/datasets/get_T030')]",
+				"[concat(variables('factoryId'), '/datasets/put_T030')]",
+				"[concat(variables('factoryId'), '/datasets/get_T134')]",
+				"[concat(variables('factoryId'), '/datasets/put_T134')]",
+				"[concat(variables('factoryId'), '/datasets/get_T134T')]",
+				"[concat(variables('factoryId'), '/datasets/put_T134T')]",
+				"[concat(variables('factoryId'), '/datasets/get_T171')]",
+				"[concat(variables('factoryId'), '/datasets/put_T171')]",
+				"[concat(variables('factoryId'), '/datasets/get_T171T')]",
+				"[concat(variables('factoryId'), '/datasets/put_T171T')]",
+				"[concat(variables('factoryId'), '/datasets/get_T880')]",
+				"[concat(variables('factoryId'), '/datasets/put_T880')]",
+				"[concat(variables('factoryId'), '/datasets/get_TCURC')]",
+				"[concat(variables('factoryId'), '/datasets/put_TCURC')]",
+				"[concat(variables('factoryId'), '/datasets/get_TCURT')]",
+				"[concat(variables('factoryId'), '/datasets/put_TCURT')]",
+				"[concat(variables('factoryId'), '/datasets/get_TCURX')]",
+				"[concat(variables('factoryId'), '/datasets/put_TCURX')]",
+				"[concat(variables('factoryId'), '/datasets/get_TKA02')]",
+				"[concat(variables('factoryId'), '/datasets/put_TKA02')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADRC_get')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "ADRC.csv",
+					"folderPath": ""
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Get_file')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DevStorage_LinkService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "test.txt",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PUT_ADRC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKET.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKKN')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKKN.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKKO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKKO.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKPO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKPO.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_KNA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "KNA1.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_LFA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "LFA1.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MAKT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MAKT.csv",
+					"folderPath": ""
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MARA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MARA.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MARC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MARC.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_SAP_FISCAL_PERIOD_DATES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "SAP_FISCAL_PERIOD_DATES.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T000')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T000.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T001')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T001.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T001W')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T001W.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T002')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T002.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T006')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T006.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T006A')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T006A.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T009')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T009.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T023')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T023.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T023T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T023T.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T024E')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T024E.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T030')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T030.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T134')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T134.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T134T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T134T.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T171')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T171.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T171T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T171T.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T880')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T880.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_TCURC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURC.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_TCURT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURT.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_TCURX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURX.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_TKA02')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TKA02.csv"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKET.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKKN')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKKN.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKKO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKKO.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKPO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "EKPO.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_KNA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "KNA1.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_LFA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "LFA1.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MAKT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MAKT.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MARA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MARA.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MARC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "MARC.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_SAP_FISCAL_PERIOD_DATES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T000')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T000.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T001')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T001W')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T002')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T006')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T006A')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T009')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T023')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T023T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T024E')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T030')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T134')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T134.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T134T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T134T.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T171')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T171.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T171T')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T171T.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_T880')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "T880.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TCURC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURC.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TCURT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURT.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TCURX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TCURX.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TKA02')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "TKA02.csv",
+					"folderPath": "Azure_Storage/Input"
+				}
+			}
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_file')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TestingStorage_linkService",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "output.txt",
+					"folderPath": "Azure_Storage/input"
+				}
+			}
+		}
+	]
+}

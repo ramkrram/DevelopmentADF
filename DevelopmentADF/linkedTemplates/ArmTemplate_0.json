@@ -1,0 +1,652 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "DevelopmentADF"
+		},
+		"AzureDataLakeStore1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeStore1'"
+		},
+		"Cloud_AzureDataLakeStore_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'Cloud_AzureDataLakeStore'"
+		},
+		"DevStorage_LinkService_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'DevStorage_LinkService'"
+		},
+		"TestingStorage_linkService_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'TestingStorage_linkService'"
+		},
+		"linkedService_filesystem_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'linkedService_filesystem'"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "AzureResource_ADF"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "AzureResource_ADF"
+		},
+		"DevStorage_LinkService_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"DevStorage_LinkService_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"DevStorage_LinkService_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"DevStorage_LinkService_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"DevStorage_LinkService_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "AzureResource_ADF"
+		},
+		"TestingStorage_linkService_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://testingadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"TestingStorage_linkService_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"TestingStorage_linkService_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"TestingStorage_linkService_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"TestingStorage_linkService_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "AzureResource_ADF"
+		},
+		"linkedService_filesystem_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "ramkr4151"
+		},
+		"Get_file_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "test.txt"
+		},
+		"Get_file_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"PUT_ADRC_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"PUT_ADRC_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_EKET_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKET.csv"
+		},
+		"put_EKET_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_EKKN_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKKN.csv"
+		},
+		"put_EKKN_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_EKKO_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKKO.csv"
+		},
+		"put_EKKO_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_EKPO_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKPO.csv"
+		},
+		"put_EKPO_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_KNA1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "KNA1.csv"
+		},
+		"put_KNA1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_LFA1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "LFA1.csv"
+		},
+		"put_LFA1_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_MAKT_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MAKT.csv"
+		},
+		"put_MAKT_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_MARA_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MARA.csv"
+		},
+		"put_MARA_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
+					"servicePrincipalId": "[parameters('AzureDataLakeStore1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStore1_servicePrincipalKey')]"
+					},
+					"tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Cloud_AzureDataLakeStore')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('Cloud_AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri')]",
+					"servicePrincipalId": "[parameters('Cloud_AzureDataLakeStore_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "[parameters('Cloud_AzureDataLakeStore_servicePrincipalKey')]"
+					},
+					"tenant": "[parameters('Cloud_AzureDataLakeStore_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('Cloud_AzureDataLakeStore_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('Cloud_AzureDataLakeStore_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DevStorage_LinkService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('DevStorage_LinkService_properties_typeProperties_dataLakeStoreUri')]",
+					"servicePrincipalId": "[parameters('DevStorage_LinkService_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "[parameters('DevStorage_LinkService_servicePrincipalKey')]"
+					},
+					"tenant": "[parameters('DevStorage_LinkService_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('DevStorage_LinkService_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('DevStorage_LinkService_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TestingStorage_linkService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('TestingStorage_linkService_properties_typeProperties_dataLakeStoreUri')]",
+					"servicePrincipalId": "[parameters('TestingStorage_linkService_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "[parameters('TestingStorage_linkService_servicePrincipalKey')]"
+					},
+					"tenant": "[parameters('TestingStorage_linkService_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('TestingStorage_linkService_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('TestingStorage_linkService_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedService_filesystem')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "\\\\Desktop-dkh8i72\\FTP",
+					"userId": "[parameters('linkedService_filesystem_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('linkedService_filesystem_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LandingVMIntegrationruntime')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Local-File-system-linkedService')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Local-integrationRuntime')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Local-system-linkservice')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/adlscloudlinkservice')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "AutoResolve"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Get_file')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DevStorage_LinkService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"quoteChar": "\"",
+						"nullValue": "\\N",
+						"encodingName": null,
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('Get_file_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('Get_file_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DevStorage_LinkService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PUT_ADRC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('PUT_ADRC_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('PUT_ADRC_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_EKET_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_EKET_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKKN')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_EKKN_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_EKKN_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKKO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_EKKO_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_EKKO_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_EKPO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_EKPO_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_EKPO_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_KNA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_KNA1_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_KNA1_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_LFA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_LFA1_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_LFA1_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MAKT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_MAKT_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_MAKT_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MARA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_MARA_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_MARA_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Cloud_AzureDataLakeStore')]"
+			]
+		}
+	]
+}

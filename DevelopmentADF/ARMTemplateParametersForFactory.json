@@ -1,0 +1,396 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DevelopmentADF"
+		},
+		"AzureDataLakeStore1_servicePrincipalKey": {
+			"value": ""
+		},
+		"Cloud_AzureDataLakeStore_servicePrincipalKey": {
+			"value": ""
+		},
+		"DevStorage_LinkService_servicePrincipalKey": {
+			"value": ""
+		},
+		"Local_File_system_linkedService_password": {
+			"value": ""
+		},
+		"TestingStorage_linkService_servicePrincipalKey": {
+			"value": ""
+		},
+		"linkedService_Landing_VM_password": {
+			"value": ""
+		},
+		"linkedService_filesystem_password": {
+			"value": ""
+		},
+		"ADRC_get_properties_typeProperties_fileName": {
+			"value": "ADRC.csv"
+		},
+		"ADRC_get_properties_typeProperties_folderPath": {
+			"value": ""
+		},
+		"Get_file_properties_typeProperties_fileName": {
+			"value": "test.txt"
+		},
+		"Get_file_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"PUT_ADRC_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"PUT_ADRC_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"get_EKET_properties_typeProperties_fileName": {
+			"value": "EKET.csv"
+		},
+		"get_EKKN_properties_typeProperties_fileName": {
+			"value": "EKKN.csv"
+		},
+		"get_EKKO_properties_typeProperties_fileName": {
+			"value": "EKKO.csv"
+		},
+		"get_EKPO_properties_typeProperties_fileName": {
+			"value": "EKPO.csv"
+		},
+		"get_KNA1_properties_typeProperties_fileName": {
+			"value": "KNA1.csv"
+		},
+		"get_LFA1_properties_typeProperties_fileName": {
+			"value": "LFA1.csv"
+		},
+		"get_MAKT_properties_typeProperties_fileName": {
+			"value": "MAKT.csv"
+		},
+		"get_MAKT_properties_typeProperties_folderPath": {
+			"value": ""
+		},
+		"get_MARA_properties_typeProperties_fileName": {
+			"value": "MARA.csv"
+		},
+		"get_MARC_properties_typeProperties_fileName": {
+			"value": "MARC.csv"
+		},
+		"get_SAP_FISCAL_PERIOD_DATES_properties_typeProperties_fileName": {
+			"value": "SAP_FISCAL_PERIOD_DATES.csv"
+		},
+		"get_T000_properties_typeProperties_fileName": {
+			"value": "T000.csv"
+		},
+		"get_T001_properties_typeProperties_fileName": {
+			"value": "T001.csv"
+		},
+		"get_T001W_properties_typeProperties_fileName": {
+			"value": "T001W.csv"
+		},
+		"get_T002_properties_typeProperties_fileName": {
+			"value": "T002.csv"
+		},
+		"get_T006_properties_typeProperties_fileName": {
+			"value": "T006.csv"
+		},
+		"get_T006A_properties_typeProperties_fileName": {
+			"value": "T006A.csv"
+		},
+		"get_T009_properties_typeProperties_fileName": {
+			"value": "T009.csv"
+		},
+		"get_T023_properties_typeProperties_fileName": {
+			"value": "T023.csv"
+		},
+		"get_T023T_properties_typeProperties_fileName": {
+			"value": "T023T.csv"
+		},
+		"get_T024E_properties_typeProperties_fileName": {
+			"value": "T024E.csv"
+		},
+		"get_T030_properties_typeProperties_fileName": {
+			"value": "T030.csv"
+		},
+		"get_T134_properties_typeProperties_fileName": {
+			"value": "T134.csv"
+		},
+		"get_T134T_properties_typeProperties_fileName": {
+			"value": "T134T.csv"
+		},
+		"get_T171_properties_typeProperties_fileName": {
+			"value": "T171.csv"
+		},
+		"get_T171T_properties_typeProperties_fileName": {
+			"value": "T171T.csv"
+		},
+		"get_T880_properties_typeProperties_fileName": {
+			"value": "T880.csv"
+		},
+		"get_TCURC_properties_typeProperties_fileName": {
+			"value": "TCURC.csv"
+		},
+		"get_TCURT_properties_typeProperties_fileName": {
+			"value": "TCURT.csv"
+		},
+		"get_TCURX_properties_typeProperties_fileName": {
+			"value": "TCURX.csv"
+		},
+		"get_TKA02_properties_typeProperties_fileName": {
+			"value": "TKA02.csv"
+		},
+		"put_EKET_properties_typeProperties_fileName": {
+			"value": "EKET.csv"
+		},
+		"put_EKET_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_EKKN_properties_typeProperties_fileName": {
+			"value": "EKKN.csv"
+		},
+		"put_EKKN_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_EKKO_properties_typeProperties_fileName": {
+			"value": "EKKO.csv"
+		},
+		"put_EKKO_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_EKPO_properties_typeProperties_fileName": {
+			"value": "EKPO.csv"
+		},
+		"put_EKPO_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_KNA1_properties_typeProperties_fileName": {
+			"value": "KNA1.csv"
+		},
+		"put_KNA1_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_LFA1_properties_typeProperties_fileName": {
+			"value": "LFA1.csv"
+		},
+		"put_LFA1_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_MAKT_properties_typeProperties_fileName": {
+			"value": "MAKT.csv"
+		},
+		"put_MAKT_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_MARA_properties_typeProperties_fileName": {
+			"value": "MARA.csv"
+		},
+		"put_MARA_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_MARC_properties_typeProperties_fileName": {
+			"value": "MARC.csv"
+		},
+		"put_MARC_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_SAP_FISCAL_PERIOD_DATES_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_SAP_FISCAL_PERIOD_DATES_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T000_properties_typeProperties_fileName": {
+			"value": "T000.csv"
+		},
+		"put_T000_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T001_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T001_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T001W_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T001W_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T002_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T002_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T006_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T006_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T006A_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T006A_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T009_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T009_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T023_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T023_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T023T_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T023T_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T024E_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T024E_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T030_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"put_T030_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T134_properties_typeProperties_fileName": {
+			"value": "T134.csv"
+		},
+		"put_T134_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T134T_properties_typeProperties_fileName": {
+			"value": "T134T.csv"
+		},
+		"put_T134T_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T171_properties_typeProperties_fileName": {
+			"value": "T171.csv"
+		},
+		"put_T171_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T171T_properties_typeProperties_fileName": {
+			"value": "T171T.csv"
+		},
+		"put_T171T_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_T880_properties_typeProperties_fileName": {
+			"value": "T880.csv"
+		},
+		"put_T880_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_TCURC_properties_typeProperties_fileName": {
+			"value": "TCURC.csv"
+		},
+		"put_TCURC_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_TCURT_properties_typeProperties_fileName": {
+			"value": "TCURT.csv"
+		},
+		"put_TCURT_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_TCURX_properties_typeProperties_fileName": {
+			"value": "TCURX.csv"
+		},
+		"put_TCURX_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_TKA02_properties_typeProperties_fileName": {
+			"value": "TKA02.csv"
+		},
+		"put_TKA02_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
+		},
+		"put_file_properties_typeProperties_fileName": {
+			"value": "output.txt"
+		},
+		"put_file_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/input"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
+			"value": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "AzureResource_ADF"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_servicePrincipalId": {
+			"value": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_tenant": {
+			"value": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_subscriptionId": {
+			"value": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"Cloud_AzureDataLakeStore_properties_typeProperties_resourceGroupName": {
+			"value": "AzureResource_ADF"
+		},
+		"DevStorage_LinkService_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://developmentadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"DevStorage_LinkService_properties_typeProperties_servicePrincipalId": {
+			"value": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"DevStorage_LinkService_properties_typeProperties_tenant": {
+			"value": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"DevStorage_LinkService_properties_typeProperties_subscriptionId": {
+			"value": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"DevStorage_LinkService_properties_typeProperties_resourceGroupName": {
+			"value": "AzureResource_ADF"
+		},
+		"Local_File_system_linkedService_properties_typeProperties_userId": {
+			"value": "ramkr4151"
+		},
+		"TestingStorage_linkService_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://testingadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"TestingStorage_linkService_properties_typeProperties_servicePrincipalId": {
+			"value": "977d87de-4a96-4940-ad4d-97eeacada5e1"
+		},
+		"TestingStorage_linkService_properties_typeProperties_tenant": {
+			"value": "982b5f40-3124-4052-b13a-8130a2848ec6"
+		},
+		"TestingStorage_linkService_properties_typeProperties_subscriptionId": {
+			"value": "ea71a9be-4c5d-4745-87d6-618890323294"
+		},
+		"TestingStorage_linkService_properties_typeProperties_resourceGroupName": {
+			"value": "AzureResource_ADF"
+		},
+		"linkedService_Landing_VM_properties_typeProperties_userName": {
+			"value": "ramkr_landing"
+		},
+		"linkedService_filesystem_properties_typeProperties_userId": {
+			"value": "ramkr4151"
+		}
+	}
+}

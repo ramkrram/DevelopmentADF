@@ -1,0 +1,693 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "DevelopmentADF"
+		},
+		"Local_File_system_linkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Local_File_system_linkedService'"
+		},
+		"linkedService_Landing_VM_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'linkedService_Landing_VM'"
+		},
+		"put_TCURX_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "TCURX.csv"
+		},
+		"put_TCURX_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_TKA02_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "TKA02.csv"
+		},
+		"put_TKA02_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
+		"put_file_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "output.txt"
+		},
+		"put_file_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/input"
+		},
+		"Local_File_system_linkedService_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "ramkr4151"
+		},
+		"linkedService_Landing_VM_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "ramkr_landing"
+		},
+		"ADRC_get_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "ADRC.csv"
+		},
+		"ADRC_get_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"get_EKET_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKET.csv"
+		},
+		"get_EKKN_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKKN.csv"
+		},
+		"get_EKKO_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKKO.csv"
+		},
+		"get_EKPO_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "EKPO.csv"
+		},
+		"get_KNA1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "KNA1.csv"
+		},
+		"get_LFA1_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "LFA1.csv"
+		},
+		"get_MAKT_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MAKT.csv"
+		},
+		"get_MAKT_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"get_MARA_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MARA.csv"
+		},
+		"get_MARC_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MARC.csv"
+		},
+		"get_SAP_FISCAL_PERIOD_DATES_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "SAP_FISCAL_PERIOD_DATES.csv"
+		},
+		"get_T000_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "T000.csv"
+		},
+		"get_T001_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "T001.csv"
+		},
+		"get_T001W_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "T001W.csv"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TCURX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_TCURX_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_TCURX_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_TKA02')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_TKA02_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_TKA02_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/put_file')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TestingStorage_linkService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('put_file_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_file_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Local_File_system_linkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "\\\\Desktop-dkh8i72\\ftp",
+					"userId": "[parameters('Local_File_system_linkedService_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Local_File_system_linkedService_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "Local-File-system-linkedService",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedService_Landing_VM')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FtpServer",
+				"typeProperties": {
+					"host": "104.41.140.85",
+					"port": "21",
+					"enableSsl": false,
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Basic",
+					"userName": "[parameters('linkedService_Landing_VM_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('linkedService_Landing_VM_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "LandingVMIntegrationruntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADF_Get_file_local')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "pipeline_get_file_local",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureDataLakeStoreSource",
+								"recursive": true
+							},
+							"sink": {
+								"type": "AzureDataLakeStoreSink"
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Get_file",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "put_file",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/put_file')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADRC_get')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": true
+					},
+					"fileName": "[parameters('ADRC_get_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('ADRC_get_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_EKET_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKKN')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_EKKN_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKKO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_EKKO_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_EKPO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_EKPO_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_KNA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_KNA1_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_LFA1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_LFA1_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MAKT')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_MAKT_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('get_MAKT_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MARA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_MARA_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_MARC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_MARC_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_SAP_FISCAL_PERIOD_DATES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_SAP_FISCAL_PERIOD_DATES_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T000')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_T000_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T001')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_T001_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/get_T001W')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Local_File_system_linkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "FileShare",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('get_T001W_properties_typeProperties_fileName')]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Local_File_system_linkedService')]"
+			]
+		}
+	]
+}
