@@ -1,6 +1,0 @@
-{
-	"name": "Local-system-linkservice",
-	"properties": {
-		"type": "SelfHosted"
-	}
-}
