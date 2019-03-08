@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'Cloud_AzureDataLakeStore'"
 		},
+		"DB_AzureSqlDatabase_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'DB_AzureSqlDatabase'"
+		},
 		"DevStorage_LinkService_servicePrincipalKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'DevStorage_LinkService'"
@@ -182,6 +186,14 @@
 		"get_TKA02_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "TKA02.csv"
+		},
+		"get_file_ADRC_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "ADFC.csv"
+		},
+		"get_file_ADRC_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
 		},
 		"put_EKET_properties_typeProperties_fileName": {
 			"type": "string",
@@ -556,6 +568,9 @@
 					"Cloud_AzureDataLakeStore_servicePrincipalKey": {
 						"value": "[parameters('Cloud_AzureDataLakeStore_servicePrincipalKey')]"
 					},
+					"DB_AzureSqlDatabase_connectionString": {
+						"value": "[parameters('DB_AzureSqlDatabase_connectionString')]"
+					},
 					"DevStorage_LinkService_servicePrincipalKey": {
 						"value": "[parameters('DevStorage_LinkService_servicePrincipalKey')]"
 					},
@@ -640,6 +655,12 @@
 					"PUT_ADRC_properties_typeProperties_folderPath": {
 						"value": "[parameters('PUT_ADRC_properties_typeProperties_folderPath')]"
 					},
+					"get_file_ADRC_properties_typeProperties_fileName": {
+						"value": "[parameters('get_file_ADRC_properties_typeProperties_fileName')]"
+					},
+					"get_file_ADRC_properties_typeProperties_folderPath": {
+						"value": "[parameters('get_file_ADRC_properties_typeProperties_folderPath')]"
+					},
 					"put_EKET_properties_typeProperties_fileName": {
 						"value": "[parameters('put_EKET_properties_typeProperties_fileName')]"
 					},
@@ -681,12 +702,6 @@
 					},
 					"put_MAKT_properties_typeProperties_folderPath": {
 						"value": "[parameters('put_MAKT_properties_typeProperties_folderPath')]"
-					},
-					"put_MARA_properties_typeProperties_fileName": {
-						"value": "[parameters('put_MARA_properties_typeProperties_fileName')]"
-					},
-					"put_MARA_properties_typeProperties_folderPath": {
-						"value": "[parameters('put_MARA_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -705,6 +720,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"put_MARA_properties_typeProperties_fileName": {
+						"value": "[parameters('put_MARA_properties_typeProperties_fileName')]"
+					},
+					"put_MARA_properties_typeProperties_folderPath": {
+						"value": "[parameters('put_MARA_properties_typeProperties_folderPath')]"
 					},
 					"put_MARC_properties_typeProperties_fileName": {
 						"value": "[parameters('put_MARC_properties_typeProperties_fileName')]"
@@ -819,12 +840,6 @@
 					},
 					"put_TCURC_properties_typeProperties_folderPath": {
 						"value": "[parameters('put_TCURC_properties_typeProperties_folderPath')]"
-					},
-					"put_TCURT_properties_typeProperties_fileName": {
-						"value": "[parameters('put_TCURT_properties_typeProperties_fileName')]"
-					},
-					"put_TCURT_properties_typeProperties_folderPath": {
-						"value": "[parameters('put_TCURT_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -851,6 +866,12 @@
 					},
 					"linkedService_Landing_VM_password": {
 						"value": "[parameters('linkedService_Landing_VM_password')]"
+					},
+					"put_TCURT_properties_typeProperties_fileName": {
+						"value": "[parameters('put_TCURT_properties_typeProperties_fileName')]"
+					},
+					"put_TCURT_properties_typeProperties_folderPath": {
+						"value": "[parameters('put_TCURT_properties_typeProperties_folderPath')]"
 					},
 					"put_TCURX_properties_typeProperties_fileName": {
 						"value": "[parameters('put_TCURX_properties_typeProperties_fileName')]"
@@ -917,12 +938,6 @@
 					},
 					"get_T000_properties_typeProperties_fileName": {
 						"value": "[parameters('get_T000_properties_typeProperties_fileName')]"
-					},
-					"get_T001_properties_typeProperties_fileName": {
-						"value": "[parameters('get_T001_properties_typeProperties_fileName')]"
-					},
-					"get_T001W_properties_typeProperties_fileName": {
-						"value": "[parameters('get_T001W_properties_typeProperties_fileName')]"
 					}
 				}
 			},
@@ -943,6 +958,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"get_T001_properties_typeProperties_fileName": {
+						"value": "[parameters('get_T001_properties_typeProperties_fileName')]"
+					},
+					"get_T001W_properties_typeProperties_fileName": {
+						"value": "[parameters('get_T001W_properties_typeProperties_fileName')]"
 					},
 					"get_T002_properties_typeProperties_fileName": {
 						"value": "[parameters('get_T002_properties_typeProperties_fileName')]"

@@ -7,6 +7,14 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "DevelopmentADF"
 		},
+		"put_MARA_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "MARA.csv"
+		},
+		"put_MARA_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "Azure_Storage/Input"
+		},
 		"put_MARC_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "MARC.csv"
@@ -158,20 +166,39 @@
 		"put_TCURC_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "Azure_Storage/Input"
-		},
-		"put_TCURT_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "TCURT.csv"
-		},
-		"put_TCURT_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "Azure_Storage/Input"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/put_MARA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Cloud_AzureDataLakeStore",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureDataLakeStoreFile",
+				"typeProperties": {
+					"format": {
+						"type": "TextFormat",
+						"columnDelimiter": ",",
+						"rowDelimiter": "",
+						"nullValue": "\\N",
+						"treatEmptyAsNull": true,
+						"skipLineCount": 0,
+						"firstRowAsHeader": false
+					},
+					"fileName": "[parameters('put_MARA_properties_typeProperties_fileName')]",
+					"folderPath": "[parameters('put_MARA_properties_typeProperties_folderPath')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/put_MARC')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -681,33 +708,6 @@
 					},
 					"fileName": "[parameters('put_TCURC_properties_typeProperties_fileName')]",
 					"folderPath": "[parameters('put_TCURC_properties_typeProperties_folderPath')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/put_TCURT')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Cloud_AzureDataLakeStore",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureDataLakeStoreFile",
-				"typeProperties": {
-					"format": {
-						"type": "TextFormat",
-						"columnDelimiter": ",",
-						"rowDelimiter": "",
-						"nullValue": "\\N",
-						"treatEmptyAsNull": true,
-						"skipLineCount": 0,
-						"firstRowAsHeader": false
-					},
-					"fileName": "[parameters('put_TCURT_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('put_TCURT_properties_typeProperties_folderPath')]"
 				}
 			},
 			"dependsOn": []

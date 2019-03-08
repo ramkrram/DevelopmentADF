@@ -11,6 +11,9 @@
 		"Cloud_AzureDataLakeStore_servicePrincipalKey": {
 			"value": ""
 		},
+		"DB_AzureSqlDatabase_connectionString": {
+			"value": ""
+		},
 		"DevStorage_LinkService_servicePrincipalKey": {
 			"value": ""
 		},
@@ -136,6 +139,12 @@
 		},
 		"get_TKA02_properties_typeProperties_fileName": {
 			"value": "TKA02.csv"
+		},
+		"get_file_ADRC_properties_typeProperties_fileName": {
+			"value": "ADFC.csv"
+		},
+		"get_file_ADRC_properties_typeProperties_folderPath": {
+			"value": "Azure_Storage/Input"
 		},
 		"put_EKET_properties_typeProperties_fileName": {
 			"value": "EKET.csv"
