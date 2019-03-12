@@ -447,5 +447,6 @@
 			"fileName": "ADFC.csv",
 			"folderPath": "Azure_Storage/Input"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

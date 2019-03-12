@@ -4,9 +4,9 @@
 	"properties": {
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "\\\\Desktop-dkh8i72\\ftp",
-			"userId": "ramkr4151",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0MGM4Y2ViYi1mOGIwLTQzOTQtOTcwOS1jMzg1ZGM4YTkxZDIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"host": "\\\\LAPTOP-ME7JE2EE\\ftp",
+			"userId": "ramkr_azure",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NWNhNzQ4MC0wMGIwLTQ2ZTYtODQxNS0zZDZhZTk4OTIyNDAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "Local-File-system-linkedService",
